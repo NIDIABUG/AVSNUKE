@@ -3,10 +3,10 @@ const { Client, IntentsBitField, ActivityType } = require('discord.js');
 
 const client = new Client({
     intents: [
-            IntentsBitField.Flags.Guilds,
-            IntentsBitField.Flags.GuildMembers,
-            IntentsBitField.Flags.GuildMessages,
-            IntentsBitField.Flags.MessageContent,
+        IntentsBitField.Flags.Guilds,
+        IntentsBitField.Flags.GuildMembers,
+        IntentsBitField.Flags.GuildMessages,
+        IntentsBitField.Flags.MessageContent,
     ],
 });
 
@@ -20,20 +20,25 @@ client.on('ready', (c) => {
 
 // FIX THIS, add ability to comparing no message and have
 client.on('interactionCreate', (interaction) => {
-    if(!interaction.isChatInputCommand()) {return;}
-    
-    if (interaction.commandName === 'hey'){
-        interaction.reply('hello');
+    if (!interaction.isChatInputCommand()) { return; }
+
+    if (interaction.commandName === 'hey') {
+        interaction.reply('hello ' + interaction.user.username);
     }
 
-    if (interaction.commandName === 'nuke'){
+    if (interaction.commandName === 'nuke') {
         const radius = interaction.options.get('radius').value;
         var last_message = interaction.options.get('last-message')?.value;
-        if(last_message === undefined){
-            last_message = 'none';
+
+        // no message
+        if (last_message === undefined) {
+            last_message = 'with no messages';
+        } else {
+            last_message = 'saying \'' + last_message + '\'';
         }
 
-        interaction.reply('mofo activated a nuke with a radius of ' + radius + ' and it says \'' + last_message + '\'');
+        interaction.reply('mofo activated a nuke with a radius of ' + radius + ' ' + last_message);
+        //interaction.reply('mofo activated a nuke with a radius of ' + radius + ' and it says \'' + last_message + '\'');
     }
 })
 
