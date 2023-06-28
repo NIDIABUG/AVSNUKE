@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, IntentsBitField, ActivityType } = require('discord.js');
+const { Client, IntentsBitField, ActivityType, SnowflakeUtil } = require('discord.js');
 
 const client = new Client({
     intents: [
@@ -18,15 +18,12 @@ client.on('ready', (c) => {
     });
 });
 
-// FIX THIS, add ability to comparing no message and have
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) { return; }
-
-    if (interaction.commandName === 'hey') {
+    else if (interaction.commandName === 'hey') {
         interaction.reply('hello ' + interaction.user.username);
     }
-
-    if (interaction.commandName === 'nuke') {
+    else if (interaction.commandName === 'nuke') {
         const radius = interaction.options.get('radius').value;
         var last_message = interaction.options.get('last-message')?.value;
 
@@ -37,10 +34,37 @@ client.on('interactionCreate', (interaction) => {
             last_message = 'saying \'' + last_message + '\'';
         }
 
-        interaction.reply('mofo activated a nuke with a radius of ' + radius + ' ' + last_message);
-        //interaction.reply('mofo activated a nuke with a radius of ' + radius + ' and it says \'' + last_message + '\'');
+        interaction.reply(interaction.user.username + ' activated a nuke with a radius of ' + radius + ' ' + last_message);
     }
-})
+    else if (interaction.commandName == 'add') {
+        const numberOne = interaction.options.get('number-one').value;
+        const numberTwo = interaction.options.get('number-two').value;
+        const operator = interaction.options.get('operator').value;
+        let sum;
+        if (operator !== '+' && operator !== '-' && operator !== '*' && operator !== '/') {
+            interaction.reply(interaction.user.username + 'wrong command, use (+, -, *, /) for the operator');
+            return;
+        } else {
+            switch (operator) {
+                case '+':
+                    sum = numberOne + numberTwo;
+                    break;
+                case '-':
+                    sum = numberOne - numberTwo;
+                    break;
+                case '*':
+                    sum = numberOne * numberTwo;
+                    break;
+                case '/':
+                    sum = numberOne / numberTwo;
+                    break;
+                default:
+                    break;
+            }
+        }
+        interaction.reply(interaction.user.username + ' ' + numberOne + ' ' + operator + ' ' + numberTwo + ' is equal to ' + sum);
+    }
+});
 
 client.on('messageCreate', (msg) => {
     if (msg.content === "eyo AVSNUKE add this 5 + 10") {

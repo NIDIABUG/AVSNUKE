@@ -25,6 +25,30 @@ const commands = [
             },
         ],
     },
+    {
+        name: 'add',
+        description: 'add two numbers',
+        options: [
+            {
+                name: 'number-one',
+                description: 'the first number your trying to add obviously',
+                type: ApplicationCommandOptionType.Number,
+                required: true,
+            },
+            {
+                name: 'number-two',
+                description: 'the second number your trying to add bro',
+                type: ApplicationCommandOptionType.Number,
+                required: true,
+            },
+            {
+                name: 'operator',
+                description: '+, -, *, /, its arithmetic, just so you know',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            },
+        ],
+    },
 ];
 
 const rest = new REST({ version: '10'}).setToken(process.env.TOKEN);
