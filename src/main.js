@@ -36,7 +36,7 @@ client.on('interactionCreate', (interaction) => {
 
         interaction.reply(interaction.user.username + ' activated a nuke with a radius of ' + radius + ' ' + last_message);
     }
-    else if (interaction.commandName == 'add') {
+    else if (interaction.commandName == 'calculate') {
         const numberOne = interaction.options.get('number-one').value;
         const numberTwo = interaction.options.get('number-two').value;
         const operator = interaction.options.get('operator').value;

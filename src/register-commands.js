@@ -26,24 +26,24 @@ const commands = [
         ],
     },
     {
-        name: 'add',
-        description: 'add two numbers',
+        name: 'calculate',
+        description: 'Calculate the 2 given number with operator +, -, *, and /',
         options: [
             {
                 name: 'number-one',
-                description: 'the first number your trying to add obviously',
+                description: 'first number',
                 type: ApplicationCommandOptionType.Number,
                 required: true,
             },
             {
                 name: 'number-two',
-                description: 'the second number your trying to add bro',
+                description: 'second number',
                 type: ApplicationCommandOptionType.Number,
                 required: true,
             },
             {
                 name: 'operator',
-                description: '+, -, *, /, its arithmetic, just so you know',
+                description: '(+, -, *, /) its arithmetic, just so you know',
                 type: ApplicationCommandOptionType.String,
                 required: true,
             },
