@@ -49,12 +49,24 @@ const commands = [
             },
         ],
     },
+    {
+        name: 'delete',
+        description: 'Delete a given number of messages, all of the recent ones.',
+        options: [
+            {
+                name: 'range',
+                description: 'Range of how many message will be deleted',
+                type: ApplicationCommandOptionType.Number,
+                restricted: false,
+            },
+        ],
+    }
 ];
 
-const rest = new REST({ version: '10'}).setToken(process.env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 (async () => {
-    try{
+    try {
         console.log('Registering Commands..');
 
         await rest.put(
@@ -63,7 +75,7 @@ const rest = new REST({ version: '10'}).setToken(process.env.TOKEN);
         )
 
         console.log('Command Registered!');
-    } catch(error){
+    } catch (error) {
         console.log(`error: ${error}`);
     }
 })();
