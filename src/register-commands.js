@@ -55,9 +55,15 @@ const commands = [
         options: [
             {
                 name: 'range',
-                description: 'Range of how many message will be deleted',
-                type: ApplicationCommandOptionType.Number,
-                restricted: false,
+                description: 'Range of how many message will be deleted (cant be null)',
+                type: ApplicationCommandOptionType.Integer,
+                required: true,
+            },
+            {
+                name: 'visible',
+                description: 'Whether if it is visible or not',
+                type: ApplicationCommandOptionType.Boolean,
+                required: false,
             },
         ],
     }
